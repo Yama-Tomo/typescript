@@ -64,7 +64,7 @@ const tsModule: Module<Options> = function (moduleOptions) {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-              [`append${ext.charAt(0).toUpperCase() + ext.slice(1)}SuffixTo`]: [/\.vue$/],
+              ...(ext === 'tsx' ? { [`append${ext.charAt(0).toUpperCase() + ext.slice(1)}SuffixTo`]: [/\.vue$/] } : {}),
               ...(options.loaders && options.loaders[ext])
             }
           }
